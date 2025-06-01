@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <vector>
 
 // ---------------------------------------------------
 // 📌 Создание структуры и доступ к полям
@@ -8,6 +9,7 @@
 struct Person {
     std::string name;
     int age;
+    Person(const std::string& n, int a) : name(n), age(a) {}
 };
 
 void example_struct() {
@@ -22,6 +24,7 @@ void example_struct() {
 struct Person2 {
     std::string name;
     int height = 180;
+    Person2(const std::string& n, int h) : name(n), height(h) {}
 };
 
 void example_destructuring() {
@@ -59,4 +62,23 @@ void example_has_key() {
     std::map<std::string, int> settings = { {"theme", 1} };
     bool hasTheme = settings.find("theme") != settings.end();
     bool hasHeight = settings.count("height") > 0;
+}
+
+// ---------------------------------------------------
+// 📌 Пример класса с методами и конструктором/деструктором
+// ---------------------------------------------------
+class Rectangle {
+public:
+    Rectangle(double w, double h) : width(w), height(h) {}
+    double area() const { return width * height; }
+    double perimeter() const { return 2 * (width + height); }
+private:
+    double width;
+    double height;
+};
+
+void example_class_usage() {
+    Rectangle rect(3.0, 4.0);
+    std::cout << "Площадь: " << rect.area() << std::endl;
+    std::cout << "Периметр: " << rect.perimeter() << std::endl;
 }

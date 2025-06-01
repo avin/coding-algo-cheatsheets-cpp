@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <regex>
 #include <iostream>
+#include <sstream>
 
 // ---------------------------------------------------
 // 📌 Строка -> вектор символов и обратно
@@ -72,4 +73,29 @@ void example_regex(const std::string& str) {
     for (auto it = matches_begin; it != matches_end; ++it) {
         matches.push_back(it->str());
     }
+}
+
+// ---------------------------------------------------
+// 📌 Преобразование с помощью std::stringstream: stoi, to_string, substr, split с помощью stringstream
+// ---------------------------------------------------
+void example_stringstream(const std::string& str) {
+    // конвертация строки в число
+    int num;
+    std::stringstream ss(str);
+    ss >> num;
+
+    // разбиение строки по пробелам
+    std::vector<std::string> tokens;
+    std::string token;
+    std::istringstream iss(str);
+    while (iss >> token) {
+        tokens.push_back(token);
+    }
+
+    // получение подстроки
+    std::string sub = str.substr(0, std::min<size_t>(str.size(), 5));
+
+    // удаление всех пробелов
+    std::string noSpaces = str;
+    noSpaces.erase(std::remove(noSpaces.begin(), noSpaces.end(), ' '), noSpaces.end());
 }

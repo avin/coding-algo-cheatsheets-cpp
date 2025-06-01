@@ -85,3 +85,20 @@ void example_set_operations(const std::set<int>& a, const std::set<int>& b) {
     std::set<int> diff;
     std::set_difference(a.begin(), a.end(), b.begin(), b.end(), std::inserter(diff, diff.begin()));
 }
+
+// ---------------------------------------------------
+// 📌 Мульти-множество (std::multiset) и мультимапа (std::multimap)
+// ---------------------------------------------------
+void example_multiset_multimap() {
+    std::multiset<int> ms = {1, 2, 2, 3};
+    ms.insert(2);
+    ms.erase(2); // удалит все вхождения или одно? erase(2) удалит все элементы со значением 2
+
+    std::multimap<std::string, int> mm;
+    mm.emplace("a", 1);
+    mm.emplace("a", 2);
+    auto range = mm.equal_range("a");
+    for (auto it = range.first; it != range.second; ++it) {
+        std::cout << it->first << " => " << it->second << std::endl;
+    }
+}

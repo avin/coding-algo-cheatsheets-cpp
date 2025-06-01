@@ -8,6 +8,9 @@
 #include <forward_list>
 #include <algorithm>
 #include <functional>
+#include <list>
+#include <map>
+#include <iterator>
 
 // ---------------------------------------------------
 // 📌 Очередь (FIFO)
@@ -57,7 +60,6 @@ void example_forward_list() {
 // ---------------------------------------------------
 // 📌 Двусвязный список (std::list)
 // ---------------------------------------------------
-#include <list>
 void example_list() {
     std::list<int> lst = {1, 2};
     lst.push_back(3);     // в конец
@@ -90,7 +92,6 @@ void example_set() {
 // ---------------------------------------------------
 // 📌 Словарь / хэш-таблица (std::map, std::unordered_map)
 // ---------------------------------------------------
-#include <map>
 void example_map() {
     std::map<std::string, int> ordered_map;
     ordered_map["key"] = 123;
@@ -133,7 +134,6 @@ void example_priority_queue() {
 // ---------------------------------------------------
 // 📌 Бинарный поиск (std::binary_search, std::lower_bound)
 // ---------------------------------------------------
-#include <iterator>
 bool example_binary_search(const std::vector<int>& arr, int target) {
     // проверка наличия
     return std::binary_search(arr.begin(), arr.end(), target);
@@ -190,4 +190,28 @@ void dfs_recursive(const std::vector<std::vector<int>>& adj, int u, std::vector<
     for (int v : adj[u]) {
         if (!visited[v]) dfs_recursive(adj, v, visited);
     }
+}
+
+// ---------------------------------------------------
+// 📌 Дополнительные алгоритмы (std::sort с компаратором, std::reverse, std::rotate, std::unique)
+// ---------------------------------------------------
+void example_sort_custom(std::vector<std::pair<int, int>>& vec) {
+    // сортировка по второму элементу пары, затем по первому
+    std::sort(vec.begin(), vec.end(), [](const auto& a, const auto& b) {
+        if (a.second != b.second) return a.second < b.second;
+        return a.first < b.first;
+    });
+}
+
+void example_reverse_rotate_unique(std::vector<int>& arr) {
+    // разворот
+    std::reverse(arr.begin(), arr.end());
+    // циклический сдвиг влево на 2 позиции
+    if (arr.size() > 2) {
+        std::rotate(arr.begin(), arr.begin() + 2, arr.end());
+    }
+    // удаление дубликатов (требуется отсортированный массив)
+    std::sort(arr.begin(), arr.end());
+    auto it = std::unique(arr.begin(), arr.end());
+    arr.erase(it, arr.end());
 }

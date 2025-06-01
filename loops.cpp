@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <numeric>
 
 // ---------------------------------------------------
 // 📌 Циклы, условия, тернарный оператор
@@ -9,6 +10,12 @@ void example_loops() {
     // Цикл for
     for (int i = 0; i < 10; i++) {
         std::cout << i << std::endl;
+    }
+
+    // Диапазонный цикл for (range-based for)
+    std::vector<int> arr = {1, 2, 3};
+    for (int x : arr) {
+        std::cout << x << std::endl;
     }
 
     // Цикл while
@@ -23,7 +30,6 @@ void example_loops() {
     } while (i > 0);
 
     // forEach с индексом (эмуляция)
-    std::vector<int> arr = {1, 2, 3};
     for (size_t idx = 0; idx < arr.size(); ++idx) {
         std::cout << "index: " << idx << ", value: " << arr[idx] << std::endl;
     }
@@ -64,4 +70,17 @@ void example_loops() {
     // Тернарный оператор
     int bar = 2;
     std::string foo = (bar == 2) ? "the 2" : "other";
+}
+
+// ---------------------------------------------------
+// 📌 Перебор с шагом (for с шагом, пример применения std::iota и std::for_each)
+// ---------------------------------------------------
+void example_for_step() {
+    std::vector<int> v(10);
+    std::iota(v.begin(), v.end(), 0); // заполняем 0..9
+    for (int x : v) {
+        if (x % 2 == 0) {
+            std::cout << "Чётное: " << x << std::endl;
+        }
+    }
 }

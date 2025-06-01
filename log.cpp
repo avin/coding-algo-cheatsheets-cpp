@@ -6,6 +6,9 @@
 #include <thread>
 #include <random>
 #include <algorithm>
+#include <fstream>
+#include <sstream>
+#include <format>
 
 // ---------------------------------------------------
 // 📌 Вывод данных (print / log)
@@ -21,12 +24,16 @@ void example_log() {
 }
 
 // ---------------------------------------------------
-// 📌 Форматирование вывода
+// 📌 Форматирование вывода (std::format, std::ostringstream)
 // ---------------------------------------------------
 void example_format() {
     std::string name = "Alice";
     int age = 30;
-    std::cout << "Name: " << name << ", Age: " << age << std::endl;
+    std::cout << std::format("Name: {}, Age: {}\n", name, age);
+
+    std::ostringstream oss;
+    oss << "Строка через ostringstream: " << name << ", " << age;
+    std::cout << oss.str() << std::endl;
 }
 
 // ---------------------------------------------------
@@ -75,4 +82,15 @@ void example_test_data() {
     for (int i = 0; i < 10; ++i)
         str += static_cast<char>(getRandomInt(97, 122));
     std::cout << "Random string: " << str << std::endl;
+}
+
+// ---------------------------------------------------
+// 📌 Запись логов в файл
+// ---------------------------------------------------
+void example_file_log() {
+    std::ofstream logFile("app.log", std::ios::app);
+    if (logFile.is_open()) {
+        logFile << std::format("[{}] {}\n", std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()), "Начало работы приложения");
+        logFile.close();
+    }
 }

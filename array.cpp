@@ -157,3 +157,26 @@ std::vector<int> example_dedup(const std::vector<int>& arr) {
     std::vector<int> unique(s.begin(), s.end());
     return unique;
 }
+
+// ---------------------------------------------------
+// 📌 Дополнительные алгоритмы (std::partition, std::generate, std::remove_if, std::accumulate с лямбдами)
+// ---------------------------------------------------
+std::vector<int> example_partition(const std::vector<int>& arr) {
+    std::vector<int> part = arr;
+    std::partition(part.begin(), part.end(), [](int x) { return x % 2 == 0; });
+    return part;
+}
+
+void example_generate(std::vector<int>& arr) {
+    std::iota(arr.begin(), arr.end(), 1); // заполняет 1,2,3,...
+}
+
+std::vector<int> example_remove_if(const std::vector<int>& arr) {
+    std::vector<int> result = arr;
+    result.erase(std::remove_if(result.begin(), result.end(), [](int x) { return x < 0; }), result.end());
+    return result;
+}
+
+int example_accumulate_custom(const std::vector<int>& arr) {
+    return std::accumulate(arr.begin(), arr.end(), 1, [](int acc, int x) { return acc * x; }); // произведение
+}

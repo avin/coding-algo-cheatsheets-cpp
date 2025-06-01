@@ -1,6 +1,7 @@
 #include <vector>
 #include <numeric>
 #include <algorithm>
+#include <cmath>
 
 // ---------------------------------------------------
 // 📌 Наибольший общий делитель (НОД)
@@ -73,4 +74,11 @@ long long factorial(int n) {
 long long C(int n, int k) {
     if (k > n) return 0;
     return factorial(n) / (factorial(k) * factorial(n - k));
+}
+
+// ---------------------------------------------------
+// 📌 Возведение в степень (std::pow)
+// ---------------------------------------------------
+double example_pow_abs(double x, double y) {
+    return std::pow(x, y);
 }

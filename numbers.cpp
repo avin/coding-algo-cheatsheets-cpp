@@ -1,6 +1,7 @@
 #include <vector>
 #include <cmath>
 #include <string>
+#include <sstream>
 
 // ---------------------------------------------------
 // 📌 Округление
@@ -46,4 +47,18 @@ std::vector<int> example_range(int start, int n) {
 void example_conversion(const std::string& str) {
     int num = std::stoi(str);         // преобразование строки в число
     std::string s2 = std::to_string(num); // преобразование числа в строку
+    // использование ostringstream
+    std::ostringstream oss;
+    oss << "Число: " << num;
+    std::string formatted = oss.str();
+}
+
+// ---------------------------------------------------
+// 📌 Генерация случайного числа (std::rand, std::srand)
+// ---------------------------------------------------
+#include <cstdlib>
+#include <ctime>
+int example_rand_seeded() {
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+    return std::rand(); // в диапазоне 0..RAND_MAX
 }
