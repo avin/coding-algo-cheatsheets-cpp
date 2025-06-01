@@ -1,0 +1,73 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <regex>
+#include <iostream>
+
+// ---------------------------------------------------
+// 📌 Строка -> вектор символов и обратно
+// ---------------------------------------------------
+void example_split_join(const std::string& str) {
+    std::vector<char> arr(str.begin(), str.end());
+    std::string str2(arr.begin(), arr.end());
+    std::vector<std::string> chars;
+    for (char c : str) chars.push_back(std::string(1, c));
+}
+
+// ---------------------------------------------------
+// 📌 Поиск подстроки
+// ---------------------------------------------------
+void example_find_substring(const std::string& str) {
+    bool contains = str.find("abc") != std::string::npos;
+    size_t pos = str.find("abc");
+}
+
+// ---------------------------------------------------
+// 📌 Сравнение строк
+// ---------------------------------------------------
+void example_compare(std::string s1, std::string s2) {
+    bool equal = (s1 == s2);
+    std::transform(s1.begin(), s1.end(), s1.begin(), ::tolower);
+    std::transform(s2.begin(), s2.end(), s2.begin(), ::tolower);
+    bool equalIgnoreCase = (s1 == s2);
+}
+
+// ---------------------------------------------------
+// 📌 Слияние строк
+// ---------------------------------------------------
+void example_concat(const std::string& str1, const std::string& str2) {
+    std::string merged = str1 + str2;
+    std::string merged2 = str1 + str2;
+}
+
+// ---------------------------------------------------
+// 📌 Удаление символов
+// ---------------------------------------------------
+void example_remove_char(std::string& str) {
+    str.erase(std::remove(str.begin(), str.end(), 'x'), str.end());
+}
+
+// ---------------------------------------------------
+// 📌 Замена символов / подстрок
+// ---------------------------------------------------
+void example_replace(std::string& str) {
+    std::replace(str.begin(), str.end(), 'l', 'X'); // все 'l' на 'X'
+    size_t pos = str.find("ll");
+    if (pos != std::string::npos) {
+        str.replace(pos, 2, "XX");
+    }
+}
+
+// ---------------------------------------------------
+// 📌 Регулярные выражения
+// ---------------------------------------------------
+void example_regex(const std::string& str) {
+    std::regex re("l");
+    bool found = std::regex_search(str, re);
+    auto matches_begin = std::sregex_iterator(str.begin(), str.end(), re);
+    auto matches_end = std::sregex_iterator();
+    std::vector<std::string> matches;
+    for (auto it = matches_begin; it != matches_end; ++it) {
+        matches.push_back(it->str());
+    }
+}
