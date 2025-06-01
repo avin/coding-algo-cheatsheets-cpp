@@ -1,7 +1,6 @@
 #include <vector>
 #include <cmath>
 #include <string>
-#include <algorithm>
 
 // ---------------------------------------------------
 // 📌 Округление
@@ -34,6 +33,7 @@ void example_sign_abs(double x) {
 // ---------------------------------------------------
 std::vector<int> example_range(int start, int n) {
     std::vector<int> range;
+    range.reserve(n);
     for (int i = 0; i < n; ++i) {
         range.push_back(start + i);
     }

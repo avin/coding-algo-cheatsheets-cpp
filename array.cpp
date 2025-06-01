@@ -3,6 +3,7 @@
 #include <numeric>
 #include <iterator>
 #include <iostream>
+#include <unordered_set>
 
 // ---------------------------------------------------
 // 📌 Создание вектора
@@ -10,6 +11,7 @@
 void example_vector() {
     std::vector<int> arr;
     arr = {}; // инициализация пустого вектора
+    arr.reserve(100); // зарезервировать память
 }
 
 // ---------------------------------------------------
@@ -43,7 +45,7 @@ std::vector<int> example_filter(const std::vector<int>& arr) {
 void example_find(const std::vector<int>& arr) {
     auto it = std::find(arr.begin(), arr.end(), 1);
     int index = (it != arr.end()) ? static_cast<int>(std::distance(arr.begin(), it)) : -1;
-    bool hasValue = std::find(arr.begin(), arr.end(), 1) != arr.end();
+    bool hasValue = (it != arr.end());
     bool any = std::any_of(arr.begin(), arr.end(), [](int x) { return x > 10; });
     bool all = std::all_of(arr.begin(), arr.end(), [](int x) { return x > 0; });
 }
@@ -94,7 +96,7 @@ size_t example_count(const std::vector<int>& arr) {
 }
 
 // ---------------------------------------------------
-// 📌 Слайсы
+// 📌 Срезы (subvector)
 // ---------------------------------------------------
 std::vector<int> example_slice(const std::vector<int>& arr) {
     std::vector<int> firstTwo(arr.begin(), arr.begin() + std::min(arr.size(), size_t(2)));

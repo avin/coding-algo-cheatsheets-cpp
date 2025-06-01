@@ -11,6 +11,7 @@ void example_split_join(const std::string& str) {
     std::vector<char> arr(str.begin(), str.end());
     std::string str2(arr.begin(), arr.end());
     std::vector<std::string> chars;
+    chars.reserve(str.size());
     for (char c : str) chars.push_back(std::string(1, c));
 }
 
@@ -37,7 +38,8 @@ void example_compare(std::string s1, std::string s2) {
 // ---------------------------------------------------
 void example_concat(const std::string& str1, const std::string& str2) {
     std::string merged = str1 + str2;
-    std::string merged2 = str1 + str2;
+    // или
+    std::string merged2 = str1.append(str2);
 }
 
 // ---------------------------------------------------
@@ -51,7 +53,7 @@ void example_remove_char(std::string& str) {
 // 📌 Замена символов / подстрок
 // ---------------------------------------------------
 void example_replace(std::string& str) {
-    std::replace(str.begin(), str.end(), 'l', 'X'); // все 'l' на 'X'
+    std::replace(str.begin(), str.end(), 'l', 'X'); // заменить все 'l' на 'X'
     size_t pos = str.find("ll");
     if (pos != std::string::npos) {
         str.replace(pos, 2, "XX");
