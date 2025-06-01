@@ -159,7 +159,7 @@ std::vector<int> example_dedup(const std::vector<int>& arr) {
 }
 
 // ---------------------------------------------------
-// 📌 Дополнительные алгоритмы (std::partition, std::generate, std::remove_if, std::accumulate с лямбдами)
+// 📌 Разделение по условию (std::partition)
 // ---------------------------------------------------
 std::vector<int> example_partition(const std::vector<int>& arr) {
     std::vector<int> part = arr;
@@ -167,16 +167,25 @@ std::vector<int> example_partition(const std::vector<int>& arr) {
     return part;
 }
 
+// ---------------------------------------------------
+// 📌 Генерация последовательных значений (std::iota)
+// ---------------------------------------------------
 void example_generate(std::vector<int>& arr) {
     std::iota(arr.begin(), arr.end(), 1); // заполняет 1,2,3,...
 }
 
+// ---------------------------------------------------
+// 📌 Удаление элементов по условию (std::remove_if)
+// ---------------------------------------------------
 std::vector<int> example_remove_if(const std::vector<int>& arr) {
     std::vector<int> result = arr;
     result.erase(std::remove_if(result.begin(), result.end(), [](int x) { return x < 0; }), result.end());
     return result;
 }
 
+// ---------------------------------------------------
+// 📌 Произвольное накопление (std::accumulate с лямбдами)
+// ---------------------------------------------------
 int example_accumulate_custom(const std::vector<int>& arr) {
     return std::accumulate(arr.begin(), arr.end(), 1, [](int acc, int x) { return acc * x; }); // произведение
 }
